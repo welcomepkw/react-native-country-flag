@@ -32,5 +32,8 @@
   },
   "files": [
     "dist"
-  ]
+  ],
+  "dependencies": {
+    "react-native-fast-image": "^8.6.3"
+  }
 }

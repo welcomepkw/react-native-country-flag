@@ -1,6 +1,7 @@
 import React from "react";
-import { Image } from "react-native";
 import * as flag from "./flags/flagsIndex";
+import FastImage from 'react-native-fast-image'
+
 
 interface Props {
   isoCode: string;
@@ -16,10 +17,18 @@ const CountryFlag = ({ isoCode, size, style }: Props) => {
   // This switch case is just there because you can't name variables "in" and "do"
   switch (isoCode.toLowerCase()) {
     case "in":
-      return <Image source={flag["ind"]} style={[{ width: size * 1.6, height: size }, style]} />;
+      return <FastImage
+          style={[{ width: size * 1.6, height: size }, style]}
+          source={flag["ind"]}
+          resizeMode={FastImage.resizeMode.contain}
+      />
 
     case "do":
-      return <Image source={flag["dom"]} style={[{ width: size * 1.6, height: size }, style]} />;
+      return <FastImage
+          style={[{ width: size * 1.6, height: size }, style]}
+          source={flag["dom"]}
+          resizeMode={FastImage.resizeMode.contain}
+      />
 
     case "gb-eng":
     case "gb-nir":
@@ -27,11 +36,19 @@ const CountryFlag = ({ isoCode, size, style }: Props) => {
     case "gb-wls":
       const suffix = capitalizeFirstLetter(isoCode.toLowerCase().split("-")[1]);
       const key = `gb${suffix}`;
-      return <Image source={(flag as any)[key]} style={[{ width: size * 1.6, height: size }, style]} />;
+      return <FastImage
+          style={[{ width: size * 1.6, height: size }, style]}
+          source={(flag as any)[key]}
+          resizeMode={FastImage.resizeMode.contain}
+      />
 
     default:
       return (
-        <Image source={(flag as any)[isoCode.toLowerCase()]} style={[{ width: size * 1.6, height: size }, style]} />
+          <FastImage
+              style={[{ width: size * 1.6, height: size }, style]}
+              source={(flag as any)[isoCode.toLowerCase()]}
+              resizeMode={FastImage.resizeMode.contain}
+          />
       );
   }
 };
